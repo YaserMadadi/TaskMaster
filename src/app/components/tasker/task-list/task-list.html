@@ -1,0 +1,25 @@
+<table class='table table-striped'>
+  <thead>
+    <tr>
+      <th scope="col">Action</th>
+      <th scope="col">Sun Action</th>
+      <th scope="col">From</th>
+      <th scope="col">To</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Comment</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for(task of taskList; track task.id){
+
+    <tr>
+      <td>{{ task.action.name }}</td>
+      <td>{{ task.subAction.title }}</td>
+      <td>{{ task.from }}</td>
+      <td>{{ task.to }}</td>
+      <td>{{ task.quantity }}</td>
+      <td>{{ task.comment }}</td>
+    </tr>
+    }
+  </tbody>
+</table>

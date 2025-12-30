@@ -1,0 +1,101 @@
+<section id="tasker"
+         class="services section">
+  <!-- Section Title -->
+  <app-title-bar Title='Task'
+                 Message='Your Task Detail'>
+  </app-title-bar>
+  <!-- End Section Title -->
+
+  <div class="container">
+
+    <div class="row gy-4">
+
+      <div class="col-lg-12 col-md-12">
+        <div class="service-item ">
+          <div class="icon">
+            <i class="bi bi-clock"
+               style="color: #0dcaf0;"></i>
+          </div>
+          <!--Action-->
+          <div class='row mb-3'>
+            <label class='col-sm-2 col-form-label text-end'>Select Action</label>
+            <div class='col-md-10'>
+              <select class='form-select form-select-lg '
+                      aria-label='Large select example'
+                      [(ngModel)]='currentTask.action'
+                      (ngModelChange)='onActionChange($event)'>
+                @for (action of ActionList$ | async; track action.id ) {
+                <option [ngValue]='action'>
+                  {{ action.name }}
+                </option>
+                }
+              </select>
+            </div>
+          </div>
+          <!--SubAction-->
+          <div class='row mb-3'>
+            <label class='col-sm-2 col-form-label text-end'>Sub Action</label>
+            <div class='col-md-10'>
+              <select class='form-select form-select-lg'
+                      aria-label='Large select example'
+                      [(ngModel)]='currentTask.subAction'>
+                @for (subAction of filteredSubActions$ | async; track subAction.id ) {
+                <option [ngValue]='subAction'>
+                  {{ subAction.title }}
+                </option>
+                }
+              </select>
+            </div>
+          </div>
+          <!--Times-->
+          <div class='row mb-3'>
+            <!--From-->
+            <label class='col-sm-2 col-form-label text-end'>From</label>
+            <div class='col-md-10'>
+              <input type='time'
+                     class='form-control'
+                     name='from'
+                     [(ngModel)]='currentTask.from' />
+            </div>
+          </div>
+          <div class='row mb-3'>
+            <!--To-->
+            <label class='col-sm-2 col-form-label text-end'>To</label>
+            <div class='col-md-10 '>
+              <input type='time'
+                     class='form-control'
+                     name='to'
+                     [(ngModel)]='currentTask.to' />
+            </div>
+          </div>
+          <!--Quantity-->
+          <div class="row mb-3">
+            <label class='col-sm-2 col-form-label text-end'>Quantity</label>
+            <div class='col-md-10 '>
+              <input type='number'
+                     class='form-control'
+                     name='quantity'
+                     [(ngModel)]='currentTask.quantity' />
+            </div>
+          </div>
+          <!--Comment-->
+          <div class="row">
+            <label class='col-sm-2 col-form-label text-end'>Comment</label>
+            <div class='col-md-10'>
+              <input type='text'
+                     class='form-control'
+                     name='comment'
+                     [(ngModel)]='currentTask.comment' />
+            </div>
+          </div>
+          <hr class='mb-5 mt-5'>
+          <button class='btn btn-primary ps-5 pe-5'
+                  (click)='saveTask()'>Save</button>
+          <hr class='mb-5 mt-5'>
+          <app-task-list [taskList]='taskList'></app-task-list>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
